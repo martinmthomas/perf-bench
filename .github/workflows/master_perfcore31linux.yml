@@ -24,7 +24,7 @@ jobs:
       run: dotnet build --configuration Release
 
     - name: dotnet publish Analyzer
-      run: dotnet publish .\Analyzer\Analyzer.csproj -c Release -o ${{env.DOTNET_ROOT}}/analyzer
+      run: dotnet publish Analyzer\Analyzer.csproj -c Release -o ${{env.DOTNET_ROOT}}/publish_analyzer
 
     - name: Deploy Analyzer to Azure Web App
       uses: azure/webapps-deploy@v2
@@ -32,4 +32,4 @@ jobs:
         app-name: 'perfcore31linux'
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_fabf9a7b800945d3aca985595835bfc0 }}
-        package: ${{env.DOTNET_ROOT}}/analyzer 
+        package: ${{env.DOTNET_ROOT}}/publish_analyzer
