@@ -5,7 +5,12 @@ VisualStudioVersion = 16.0.30204.51
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApi", "WebApi\WebApi.csproj", "{34D6E8FA-93FF-4CEB-916B-BCE3DDCADEEF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Analyzer", "Analyzer\Analyzer.csproj", "{4503EB45-F92F-439F-AC20-BF3FE6127340}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Analyzer", "Analyzer\Analyzer.csproj", "{4503EB45-F92F-439F-AC20-BF3FE6127340}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Github", "Github", "{0ED629B5-7256-4E1C-8A52-650806DA760C}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\master_perfcore31linux.yml = .github\workflows\master_perfcore31linux.yml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
