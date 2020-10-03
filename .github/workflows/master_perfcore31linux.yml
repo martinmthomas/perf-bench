@@ -24,12 +24,23 @@ jobs:
       run: dotnet build --configuration Release
 
     - name: dotnet publish
-      run: dotnet publish Analyzer/Analyzer.csproj -c Release -o ${{env.DOTNET_ROOT}}/myapp
+      run: dotnet publish Analyzer/Analyzer.csproj -c Release -o ${{env.DOTNET_ROOT}}/publish_analyzer
 
-    - name: Deploy to Azure Web App
+    - name: dotnet publish
+      run: dotnet publish WebApi/WebApi.csproj -c Release -o ${{env.DOTNET_ROOT}}/publish_webapi
+
+    - name: Deploy Analyzer to Azure Web App
+      uses: azure/webapps-deploy@v2
+      with:
+        app-name: 'perfanalyzer'
+        slot-name: 'production'
+        publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_ANALYZER }}
+        package: ${{env.DOTNET_ROOT}}/publish_analyzer 
+
+    - name: Deploy WebApi to Azure Web App
       uses: azure/webapps-deploy@v2
       with:
         app-name: 'perfcore31linux'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_b4b82bbe46ff44f0af9ddf58c589bb4b }}
-        package: ${{env.DOTNET_ROOT}}/myapp 
+        publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_PERFCORE31LINUX }}
+        package: ${{env.DOTNET_ROOT}}/publish_webapi 

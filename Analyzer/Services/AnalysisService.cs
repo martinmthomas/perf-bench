@@ -40,20 +40,28 @@ namespace Analyzer.Services
 
             Task.Run(async () =>
             {
-                var platform = GetPlatform(request.PlatformId);
-
-                var processor = new AnalysisProcessor
+                try
                 {
-                    AnalysisRequest = request,
-                    RequestUrl = platform.Url,
-                    ExecuteRequestFunc = ExecuteRequestAsync
-                };
+                    var platform = GetPlatform(request.PlatformId);
 
-                var tasks = await processor.StartAsync();
+                    var processor = new AnalysisProcessor
+                    {
+                        AnalysisRequest = request,
+                        RequestUrl = platform.Url,
+                        ExecuteRequestFunc = ExecuteRequestAsync
+                    };
 
-                await Task
-                    .WhenAll(tasks)
-                    .ContinueWith(async t => await SaveAnalysisAsync(request.PlatformId));
+                    var tasks = await processor.StartAsync();
+
+                    await Task
+                        .WhenAll(tasks)
+                        .ContinueWith(async t => await SaveAnalysisAsync(request.PlatformId));
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogError(ex, $"Starting analysis failed for Platform: {request.PlatformId}, AnalysisId: {_analysisId}");
+                    _analysisId = default;
+                }
             });
 
             return _analysisId;
