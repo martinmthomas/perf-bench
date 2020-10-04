@@ -1,6 +1,7 @@
 ﻿using Analyzer.Models;
 using Analyzer.Services;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Threading.Tasks;
 
 namespace Analyzer.Controllers
@@ -32,6 +33,12 @@ namespace Analyzer.Controllers
         public async Task<IActionResult> GetAnalysis([FromQuery] string platform, [FromQuery] string analysisId)
         {
             return new OkObjectResult(await _analysisService.GetAnalysisAsync(platform, analysisId));
+        }
+
+        [HttpGet("test")]
+        public async Task<IActionResult> Test()
+        {
+            return new OkObjectResult($"Hello at {DateTime.Now:dd/MM/yyyy hh:mm:ss.fff}");
         }
     }
 }
