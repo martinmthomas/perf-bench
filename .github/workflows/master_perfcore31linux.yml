@@ -43,4 +43,4 @@ jobs:
         tags: 'latest'
         path: '.'
         dockerfile: 'Analyzer/Dockerfile'
-        build_args: AnalysisStorage__ConnectionString=${{ secrets.ANALYSIS_STORAGE_CONNECTIONSTRING }}
+        build_args: AnalysisStorageConnectionString=${{ secrets.ANALYSIS_STORAGE_CONNECTIONSTRING }}
