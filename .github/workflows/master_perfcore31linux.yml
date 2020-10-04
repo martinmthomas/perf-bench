@@ -31,7 +31,7 @@ jobs:
       with:
         app-name: 'perfcore31linux'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_PERFCORE31LINUX }}
+        publish-profile: ${{ secrets.CORE31LINUX_AZUREAPPSERVICE_PUBLISHPROFILE }}
         package: ${{env.DOTNET_ROOT}}/publish_webapi 
 
     - name: Build and push Analyzer Docker image
@@ -43,4 +43,4 @@ jobs:
         tags: 'latest'
         path: '.'
         dockerfile: 'Analyzer/Dockerfile'
-        build_args: AnalysisStorageConnectionString=${{ secrets.ANALYSIS_STORAGE_CONNECTIONSTRING }}
+        build_args: AnalysisStorageConnectionString=${{ secrets.ANALYSIS_STORAGE_CONNECTIONSTRING }},Core31LinuxUrl=$${{ secrets.CORE31LINUX_URL }}
