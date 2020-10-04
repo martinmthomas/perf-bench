@@ -5,6 +5,7 @@ WORKDIR /app
 EXPOSE 80
 
 ARG AnalysisStorageConnectionString=''
+ENV AnalysisStorage__ConnectionString=$AnalysisStorageConnectionString
 
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS build
 WORKDIR /src
@@ -18,7 +19,6 @@ FROM build AS publish
 RUN dotnet publish "Analyzer.csproj" -c Release -o /app/publish
 
 FROM base AS final
-ENV AnalysisStorage__ConnectionString=$AnalysisStorageConnectionString
 WORKDIR /app
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "Analyzer.dll"]
