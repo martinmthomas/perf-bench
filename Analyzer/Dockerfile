@@ -4,7 +4,8 @@ FROM mcr.microsoft.com/dotnet/core/aspnet:3.1-buster-slim AS base
 WORKDIR /app
 EXPOSE 80
 
-ARG AnalysisStorageConnectionString='' Core31LinuxUrl=''
+ARG AnalysisStorageConnectionString=''
+ARG Core31LinuxUrl=''
 
 ENV AnalysisStorage__ConnectionString=$AnalysisStorageConnectionString
 ENV Platforms__0__Url=$Core31LinuxUrl
