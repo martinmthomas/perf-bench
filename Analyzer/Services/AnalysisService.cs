@@ -80,12 +80,19 @@ namespace Analyzer.Services
 
         private async Task SaveAnalysisAsync(string platformId)
         {
-            var analysis = new Analysis(platformId, _analysisId, _results.ToList());
-            await _analysisRepository.SaveAsync(analysis);
+            try
+            {
+                var analysis = new Analysis(platformId, _analysisId, _results.ToList());
+                await _analysisRepository.SaveAsync(analysis);
 
-            _logger.LogInformation($"Analysis completed for Platform: {platformId}, AnalysisId: {_analysisId}");
+                _logger.LogInformation($"Analysis completed for Platform: {platformId}, AnalysisId: {_analysisId}");
 
-            _analysisId = default;
+                _analysisId = default;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Saving analysis results failed");
+            }
         }
 
         public async Task<Analysis> GetAnalysisAsync(string platformId, string analysisId)

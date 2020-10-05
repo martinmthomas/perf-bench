@@ -6,7 +6,7 @@ namespace Analyzer.Services
 {
     public interface IAnalysisService
     {
-        Task<Analysis> GetAnalysisAsync(string platform, string analysisId);
+        Task<Analysis> GetAnalysisAsync(string platformId, string analysisId);
 
         bool IsAnalysisInProgress();
 

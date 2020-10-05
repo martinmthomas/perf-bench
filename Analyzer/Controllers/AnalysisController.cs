@@ -30,9 +30,9 @@ namespace Analyzer.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAnalysis([FromQuery] string platform, [FromQuery] string analysisId)
+        public async Task<IActionResult> GetAnalysis([FromQuery] string platformId, [FromQuery] string analysisId)
         {
-            return new OkObjectResult(await _analysisService.GetAnalysisAsync(platform, analysisId));
+            return new OkObjectResult(await _analysisService.GetAnalysisAsync(platformId, analysisId));
         }
 
         [HttpGet("test")]

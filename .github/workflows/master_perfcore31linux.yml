@@ -43,4 +43,4 @@ jobs:
         tags: 'latest'
         path: '.'
         dockerfile: 'Analyzer/Dockerfile'
-        build_args: AnalysisStorageConnectionString=${{ secrets.ANALYSIS_STORAGE_CONNECTIONSTRING }},Core31LinuxUrl=${{ secrets.CORE31LINUX_URL }}
+        build_args: AnalysisCosmosDbConnectionString=${{ secrets.ANALYSIS_COSMOSDB_CONNECTIONSTRING }},Core31LinuxUrl=${{ secrets.CORE31LINUX_URL }}

@@ -17,13 +17,6 @@
       },
       "applicationUrl": "http://localhost:62755"
     },
-    "IIS Express": {
-      "commandName": "IISExpress",
-      "launchUrl": "analysis",
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      }
-    },
     "Docker": {
       "commandName": "Docker",
       "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/analysis",

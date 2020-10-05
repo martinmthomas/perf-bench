@@ -61,3 +61,5 @@ ClientBin/
 *.[Pp]ublish.xml
 .vs/
 *.publishsettings
+
+appsettings.*.json

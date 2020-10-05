@@ -1,5 +1,4 @@
 using Analyzer.Models.Configs;
-using Analyzer.Models.TableEntities;
 using Analyzer.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -33,7 +32,6 @@ namespace Analyzer
             services.AddSingleton<IAnalysisRepository, AnalysisRepository>();
 
             services.AddSingleton<IAnalysisService, AnalysisService>();
-            services.AddSingleton<ITableService<AnalysisEntity>, TableService<AnalysisEntity>>();
 
             services
                 .AddControllers()
@@ -43,8 +41,8 @@ namespace Analyzer
         public void ConfigureOptions(IServiceCollection services)
         {
             services
-                .AddOptions<AnalysisStorageOptions>()
-                .Bind(Configuration.GetSection("AnalysisStorage"));
+                .AddOptions<CosmosOptions>()
+                .Bind(Configuration.GetSection("AnalysisCosmosDb"));
 
             services
                 .AddOptions<PlatformsOptions>()
