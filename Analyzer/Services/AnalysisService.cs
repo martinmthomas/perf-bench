@@ -4,6 +4,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Concurrent;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -116,6 +117,17 @@ namespace Analyzer.Services
         private Platform GetPlatform(string platformId)
         {
             return _platforms.Value.First(p => p.Id.Equals(platformId, StringComparison.OrdinalIgnoreCase));
+        }
+
+        public async Task<IList<Analysis>> GetLatestAnalysesAsync()
+        {
+            var analyses = new List<Analysis>();
+
+            var platforms = await _analysisRepository.GetPlatformsSummaryAsync();
+            foreach (var platform in platforms)
+                analyses.Add(await _analysisRepository.GetAsync(platform.Id, platform.AnalysisId.ToString()));
+
+            return analyses;
         }
     }
 }

@@ -7,5 +7,7 @@
         public string DatabaseName { get; set; }
 
         public ContainerOptions AnalysesContainer { get; set; }
+
+        public ContainerOptions PlatformsContainer { get; set; }
     }
 }

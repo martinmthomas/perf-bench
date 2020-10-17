@@ -47,6 +47,13 @@ namespace Analyzer
             services
                 .AddOptions<PlatformsOptions>()
                 .Bind(Configuration.GetSection("Platforms"));
+
+            services.AddCors(options => options.AddPolicy("CorsPolicy", policy =>
+            {
+                policy.AllowAnyOrigin();
+                policy.AllowAnyMethod();
+                policy.AllowAnyHeader();
+            }));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -58,6 +65,8 @@ namespace Analyzer
             }
 
             app.UseRouting();
+
+            app.UseCors("CorsPolicy");
 
             app.UseEndpoints(endpoints =>
             {

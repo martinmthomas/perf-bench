@@ -1,5 +1,6 @@
 ﻿using Analyzer.Models;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Analyzer.Services
@@ -11,5 +12,7 @@ namespace Analyzer.Services
         bool IsAnalysisInProgress();
 
         Guid Start(AnalysisRequest request);
+
+        Task<IList<Analysis>> GetLatestAnalysesAsync();
     }
 }

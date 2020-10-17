@@ -35,6 +35,12 @@ namespace Analyzer.Controllers
             return new OkObjectResult(await _analysisService.GetAnalysisAsync(platformId, analysisId));
         }
 
+        [HttpGet("latest")]
+        public async Task<IActionResult> GetLatestAnalyses()
+        {
+            return new OkObjectResult(await _analysisService.GetLatestAnalysesAsync());
+        }
+
         [HttpGet("test")]
         public async Task<IActionResult> Test()
         {

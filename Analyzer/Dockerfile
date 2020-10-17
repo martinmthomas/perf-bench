@@ -6,9 +6,11 @@ EXPOSE 80
 
 ARG AnalysisCosmosDbConnectionString=''
 ARG Core31LinuxUrl=''
+ARG Core31FuncAppUrl=''
 
 ENV AnalysisCosmosDb__ConnectionString=$AnalysisCosmosDbConnectionString
 ENV Platforms__0__Url=$Core31LinuxUrl
+ENV Platforms__1__Url=$Core31FuncAppUrl
 
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS build
 WORKDIR /src

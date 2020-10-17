@@ -12,6 +12,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Github", "Github", "{0ED629
 		.github\workflows\master_perfcore31linux.yml = .github\workflows\master_perfcore31linux.yml
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FuncApp", "FuncApp\FuncApp.csproj", "{4CDCD255-1649-4AF7-8645-D202E2E8D2FA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,6 +28,10 @@ Global
 		{4503EB45-F92F-439F-AC20-BF3FE6127340}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4503EB45-F92F-439F-AC20-BF3FE6127340}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4503EB45-F92F-439F-AC20-BF3FE6127340}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4CDCD255-1649-4AF7-8645-D202E2E8D2FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4CDCD255-1649-4AF7-8645-D202E2E8D2FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4CDCD255-1649-4AF7-8645-D202E2E8D2FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4CDCD255-1649-4AF7-8645-D202E2E8D2FA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

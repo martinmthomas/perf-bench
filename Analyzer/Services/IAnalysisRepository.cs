@@ -8,7 +8,9 @@ namespace Analyzer.Services
     {
         Task<IList<Analysis>> GetAllAsync();
 
-        Task<Analysis> GetAsync(string platform, string analysisId);
+        Task<Analysis> GetAsync(string platformId, string analysisId);
+
+        Task<IList<PlatformSummary>> GetPlatformsSummaryAsync();
 
         Task SaveAsync(Analysis analysis);
     }

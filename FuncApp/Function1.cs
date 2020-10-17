@@ -1,14 +1,15 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Azure.WebJobs;
+using Microsoft.Azure.WebJobs.Extensions.Http;
+using Microsoft.Extensions.Logging;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace WebApi.Controllers
+namespace FuncApp
 {
-    [ApiController]
-    [Route("api/plant")]
-    public class PlantController
+    public static class Function1
     {
         private static readonly string[] Seasons = new[]
         {
@@ -20,11 +21,13 @@ namespace WebApi.Controllers
             "Spinach", "Beetroot", "Onion", "Carrot",  "Mint", "Leek"
         };
 
-        public PlantController() { }
-
-        [HttpGet]
-        public async Task<IEnumerable<Plant>> Get()
+        [FunctionName("Function1")]
+        public static async Task<IActionResult> Run(
+            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "plant")] HttpRequest req,
+            ILogger log)
         {
+            log.LogInformation("C# HTTP trigger function processed a request.");
+
             var rng = new Random();
             var plants = PlantNames.Select(plantName => new Plant
             {
@@ -35,9 +38,10 @@ namespace WebApi.Controllers
             // some asynchronous action.
             await Task.Delay(100);
 
-            return plants;
+            return new OkObjectResult(plants);
         }
     }
+
 
     public class Plant
     {
